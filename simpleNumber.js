@@ -1,20 +1,25 @@
 function simpleNumbers(n) {
 
-    caches = []
-
-    for (let i = 1; caches.length < n; i++ ) {
-        if (i % 2 !== 0) {
+    const caches = [];
+    for (let i = 2; caches.length < n; i++) {
+        let tag = false;
+        for (let x = 0; x < i; x++) {
+            if (i % caches[x] === 0) {
+                tag = true;
+                break;
+            }
+        }
+        if (tag === false) {
             caches.push(i)
-
         };
-    };
 
-    return `Простых чисел в массиве ${caches.length} это ${caches}`
+    }
+    return `Массив из ${caches.length} простых чисел это ${caches}`
 };
 
 
 
 console.time('simpleNumbers');
-console.log(simpleNumbers(process.argv[2]));
+console.log(simpleNumbers(100));
 console.timeEnd('simpleNumbers');
 
